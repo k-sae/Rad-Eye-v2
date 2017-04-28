@@ -7,9 +7,8 @@
     android:background="@color/background"
     tools:context="com.p4f.kareem.rad_eye_v2.MainActivityFragment"
     tools:showIn="@layout/activity_main">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -33,10 +32,24 @@
             android:textSize="32sp"
             android:layout_margin="5dp"
             android:text="@string/calculate_the_radiation_dose" />
+        <!-- impossible to wrap content -_- -->
         <android.support.v4.view.ViewPager
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/mainViewPager"/>
+            android:layout_height="400dp"
+            android:background="@color/colorAccent"
+            android:layout_below="@+id/background"
+            android:id="@+id/mainViewPager">
+            <android.support.v4.view.PagerTabStrip
+                android:id="@+id/pager_title_strip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:background="@color/backgroundSecondary"
+                android:textColor="#fff"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
+
+        </android.support.v4.view.ViewPager>
     </RelativeLayout>
 </ScrollView>
 </android.support.constraint.ConstraintLayout>

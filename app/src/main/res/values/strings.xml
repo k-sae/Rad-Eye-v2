@@ -2,4 +2,13 @@
     <string name="app_name">Rad-Eye-v2</string>
     <string name="action_settings">Settings</string>
     <string name="calculate_the_radiation_dose">Calculate The Radiation Dose</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="airline_code_ex_aa">AirLine Code ex: AA</string>
+    <string name="plane_icon"></string>
+    <string name="date_ex_25_5_1997">date ex:25/5/1997</string>
+    <string name="calender_icon"></string>
+    <string name="flight_no_ex_100">flight no ex: 100</string>
+    <string name="flighing_plane_icon"></string>
 </resources>
