@@ -5,6 +5,7 @@
     tools:context="com.p4f.kareem.rad_eye_v2.FlightStatusByDate" android:background="@color/background">
 
     <!-- TODO: Update blank fragment layout -->
+
     <EditText
         android:id="@+id/airline_EditText"
         android:layout_width="wrap_content"
@@ -56,13 +57,13 @@
         android:layout_toRightOf="@+id/date_editText" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/findFlights"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="39dp"
         android:background="@color/colorAccent"
         android:textColor="@color/colorForeground"
-        android:text="Button"
+        android:text="@string/find_flights"
         android:layout_below="@+id/editText"
         android:layout_centerHorizontal="true" />
 
@@ -86,7 +87,7 @@
         android:layout_alignTop="@+id/editText"
         android:layout_toEndOf="@+id/editText"
         android:layout_toRightOf="@+id/editText"
-        android:text="@string/flighing_plane_icon"
+        android:text="@string/flying_plane_icon"
         android:textColor="@color/colorAccent"
         android:textSize="26sp"/>
 

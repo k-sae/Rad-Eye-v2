@@ -19,7 +19,9 @@
             <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
 
     <!--</android.support.design.widget.AppBarLayout>-->
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <include layout="@layout/content_main" />
 
     <!--<android.support.design.widget.FloatingActionButton-->
@@ -29,5 +31,12 @@
         <!--android:layout_gravity="bottom|end"-->
         <!--android:layout_margin="@dimen/fab_margin"-->
         <!--app:srcCompat="@android:drawable/ic_dialog_email" />-->
-
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:id="@+id/overLay"
+    />
+</RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

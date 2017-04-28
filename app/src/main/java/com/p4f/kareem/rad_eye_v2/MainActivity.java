@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +27,20 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.overLay);
+        if (frameLayout.getChildCount()>0)
+        {
+            frameLayout.removeAllViews();
+        }
+        else
+        {
+            super.onBackPressed();
+        }
     }
 
     @Override
