@@ -5,18 +5,19 @@
     tools:context="com.p4f.kareem.rad_eye_v2.FlightStatusByDate" android:background="@color/background">
 
     <!-- TODO: Update blank fragment layout -->
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        style="@style/flightByData_LinearLayout"
+        android:id="@+id/l1">
     <EditText
         android:id="@+id/airline_EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/airline_code_ex_aa"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:textColorHint="@color/placeHolderColor"
         android:textColor="@color/colorForeground"
         />
@@ -24,22 +25,22 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/airline_EditText"
-        android:layout_marginTop="11dp"
-        android:layout_toEndOf="@+id/airline_EditText"
-        android:layout_toRightOf="@+id/airline_EditText"
         android:text="@string/plane_icon"
         android:textColor="@color/colorAccent"
         android:textSize="26sp"
         />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/l2"
+        android:layout_centerHorizontal="true"
+        style="@style/flightByData_LinearLayout"
+        android:layout_below="@id/l1">
     <EditText
         android:id="@+id/date_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/airline_EditText"
-        android:layout_marginTop="13dp"
         android:ems="10"
         android:inputType="date"
         android:textColorHint="@color/placeHolderColor"
@@ -49,47 +50,47 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/date_editText"
-        android:layout_toEndOf="@+id/date_editText"
         android:text="@string/calender_icon"
         android:textColor="@color/colorAccent"
-        android:textSize="26sp"
-        android:layout_toRightOf="@+id/date_editText" />
+        android:textSize="26sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/l3"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        style="@style/flightByData_LinearLayout"
+        android:layout_below="@id/l2">
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textColorHint="@color/placeHolderColor"
+            android:hint="@string/flight_no_ex_100"
+            android:textColor="@color/colorForeground" />
+
+        <com.p4f.kareem.rad_eye_v2.FontAwesome
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/flying_plane_icon"
+            android:textColor="@color/colorAccent"
+            android:textSize="26sp"
+            />
+    </LinearLayout>
 
     <Button
         android:id="@+id/findFlights"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="39dp"
+        android:padding="3dp"
         android:background="@color/colorAccent"
         android:textColor="@color/colorForeground"
         android:text="@string/find_flights"
-        android:layout_below="@+id/editText"
+        android:layout_below="@id/l3"
         android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/date_editText"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:textColorHint="@color/placeHolderColor"
-        android:hint="@string/flight_no_ex_100"
-        android:textColor="@color/colorForeground" />
-
-    <com.p4f.kareem.rad_eye_v2.FontAwesome
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/editText"
-        android:layout_toEndOf="@+id/editText"
-        android:layout_toRightOf="@+id/editText"
-        android:text="@string/flying_plane_icon"
-        android:textColor="@color/colorAccent"
-        android:textSize="26sp"/>
-
 
 </RelativeLayout>
