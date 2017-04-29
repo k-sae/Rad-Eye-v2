@@ -1,10 +1,14 @@
 package com.p4f.kareem.rad_eye_v2.Adapters;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightStatus;
+import com.p4f.kareem.rad_eye_v2.R;
 
 import java.util.ArrayList;
 
@@ -14,11 +18,20 @@ import java.util.ArrayList;
 
 public class AvailableFlightsAdapter extends BaseAdapter {
    private ArrayList<FlightStatus> flightStatuses;
+    private Context context;
 
-    public AvailableFlightsAdapter() {
-        flightStatuses = new ArrayList<>();
+    public ArrayList<FlightStatus> getFlightStatuses() {
+        return flightStatuses;
     }
 
+    public void setFlightStatuses(ArrayList<FlightStatus> flightStatuses) {
+        this.flightStatuses = flightStatuses;
+    }
+
+    public AvailableFlightsAdapter(Context context) {
+        flightStatuses = new ArrayList<>();
+        this.context = context;
+    }
     @Override
     public int getCount() {
         return flightStatuses.size();
@@ -26,7 +39,9 @@ public class AvailableFlightsAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return flightStatuses.get(position);
+        FlightStatus flightStatus = flightStatuses.get(position);
+
+        return  flightStatus;
     }
 
     @Override
@@ -36,6 +51,17 @@ public class AvailableFlightsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+
+        if (convertView == null)
+        {
+           convertView =  LayoutInflater.from(context).inflate(R.layout.flightdata_view, parent, false);
+        }
+        FlightStatus flightStatus = flightStatuses.get(position);
+        TextView textView  = (TextView) convertView.findViewById(R.id.flightDetail_textView);
+        textView.setText(flightStatus.getStatus() + "-"
+                + flightStatus.getDepartureDate().getDateLocal()
+                + "-" + flightStatus.getArrivalDate().getDateLocal());
+//        ((TextView) convertView.findViewById(R.id.flightDetail_textView)).setText(flightStatus.getFlightId());
+        return convertView;
     }
 }

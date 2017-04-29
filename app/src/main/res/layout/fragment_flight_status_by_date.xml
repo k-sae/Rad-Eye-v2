@@ -42,7 +42,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="date"
         android:textColorHint="@color/placeHolderColor"
         android:hint="@string/date_ex_25_5_1997"
         android:textColor="@color/colorForeground"/>
@@ -63,7 +62,7 @@
         style="@style/flightByData_LinearLayout"
         android:layout_below="@id/l2">
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/flightNo_editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
