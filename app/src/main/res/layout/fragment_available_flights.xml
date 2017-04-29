@@ -1,16 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.p4f.kareem.rad_eye_v2.availableFlights"
     android:background="#c9000000"
     android:clickable="true"
-    >
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</RelativeLayout>
+    android:id="@+id/availableFlights_ListView">
+</ListView>
