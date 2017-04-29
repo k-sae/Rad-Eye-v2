@@ -16,6 +16,7 @@ import com.p4f.kareem.rad_eye_v2.Adapters.AvailableFlightsAdapter;
 import com.p4f.kareem.rad_eye_v2.Connections.GetConnector;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.Flight;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightStatus;
+import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightsDataTracking;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightsData;
 
 import java.net.MalformedURLException;
@@ -52,7 +53,7 @@ public class availableFlights extends Fragment {
     }
     private void fetchData(View view)
     {
-        final String BASE_URL = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/status/";
+        final String BASE_URL = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/tracks/";
 
         GetConnector getConnector = new GetConnector() {
             @Override
@@ -69,8 +70,8 @@ public class availableFlights extends Fragment {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                FlightsData flightsData = new Gson().fromJson(s,FlightsData.class);
-                availableFlightsAdapter.getFlightStatuses().addAll(flightsData.getFlightStatuses());
+                FlightsDataTracking flightsData = new Gson().fromJson(s,FlightsDataTracking.class);
+                availableFlightsAdapter.getFlightStatuses().addAll(flightsData.getFlightTracks());
                 availableFlightsAdapter.notifyDataSetChanged();
                 Log.e("info", "onPostExecute: Recieved" );
             }

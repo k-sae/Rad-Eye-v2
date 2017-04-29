@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightStatus;
+import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightTrack;
 import com.p4f.kareem.rad_eye_v2.R;
 
 import java.util.ArrayList;
@@ -17,14 +18,14 @@ import java.util.ArrayList;
  */
 
 public class AvailableFlightsAdapter extends BaseAdapter {
-   private ArrayList<FlightStatus> flightStatuses;
+   private ArrayList<FlightTrack> flightStatuses;
     private Context context;
 
-    public ArrayList<FlightStatus> getFlightStatuses() {
+    public ArrayList<FlightTrack> getFlightStatuses() {
         return flightStatuses;
     }
 
-    public void setFlightStatuses(ArrayList<FlightStatus> flightStatuses) {
+    public void setFlightStatuses(ArrayList<FlightTrack> flightStatuses) {
         this.flightStatuses = flightStatuses;
     }
 
@@ -39,7 +40,7 @@ public class AvailableFlightsAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        FlightStatus flightStatus = flightStatuses.get(position);
+        FlightTrack flightStatus = flightStatuses.get(position);
 
         return  flightStatus;
     }
@@ -56,11 +57,9 @@ public class AvailableFlightsAdapter extends BaseAdapter {
         {
            convertView =  LayoutInflater.from(context).inflate(R.layout.flightdata_view, parent, false);
         }
-        FlightStatus flightStatus = flightStatuses.get(position);
+        FlightTrack flightStatus = flightStatuses.get(position);
         TextView textView  = (TextView) convertView.findViewById(R.id.flightDetail_textView);
-        textView.setText(flightStatus.getStatus() + "-"
-                + flightStatus.getDepartureDate().getDateLocal()
-                + "-" + flightStatus.getArrivalDate().getDateLocal());
+        textView.setText(flightStatus.getFlightNumber());
 //        ((TextView) convertView.findViewById(R.id.flightDetail_textView)).setText(flightStatus.getFlightId());
         return convertView;
     }
