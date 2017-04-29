@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1083998110566",
+    "firebase_url": "https://rad-eye-v2.firebaseio.com",
+    "project_id": "rad-eye-v2",
+    "storage_bucket": "rad-eye-v2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083998110566:android:3b76789709b454d0",
+        "android_client_info": {
+          "package_name": "com.p4f.kareem.rad_eye_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083998110566-n8md0c2pv5t38qkq3tditl6fjfb4bu33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.p4f.kareem.rad_eye_v2",
+            "certificate_hash": "7367da81e51bea850ffe1e032773d41d2e8634c8"
+          }
+        },
+        {
+          "client_id": "1083998110566-hkea65q4rv1aagc20aii934lvtucj5c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5XkkSeUuHa15jW-3v_ogRWOLh7NMK8R0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083998110566-hkea65q4rv1aagc20aii934lvtucj5c3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
