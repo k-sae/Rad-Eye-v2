@@ -4,6 +4,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightStatus;
+
 import java.util.ArrayList;
 
 /**
@@ -11,15 +13,20 @@ import java.util.ArrayList;
  */
 
 public class AvailableFlightsAdapter extends BaseAdapter {
+   private ArrayList<FlightStatus> flightStatuses;
+
+    public AvailableFlightsAdapter() {
+        flightStatuses = new ArrayList<>();
+    }
 
     @Override
     public int getCount() {
-        return 0;
+        return flightStatuses.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return flightStatuses.get(position);
     }
 
     @Override
