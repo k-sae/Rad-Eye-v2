@@ -16,7 +16,9 @@ import com.p4f.kareem.rad_eye_v2.Adapters.AvailableFlightsAdapter;
 import com.p4f.kareem.rad_eye_v2.Connections.GetConnector;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.Flight;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightStatus;
+import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightTrack;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightsDataTracking;
+import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.Position;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightsData;
 
 import java.net.MalformedURLException;
@@ -46,7 +48,11 @@ public class availableFlights extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                FlightTrack flightStatus = availableFlightsAdapter.getFlightStatuses().get(position);
+                for (Position position1: availableFlightsAdapter.getFlightStatuses().get(position).getPositions()
+                     ) {
+                    Log.e("asdasd", String.valueOf( position1.getAltitudeFt()) + "//" + String.valueOf(position1.getDate()) );
+                }
             }
         });
         return view;
