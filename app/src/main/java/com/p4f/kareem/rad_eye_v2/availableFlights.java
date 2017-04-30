@@ -4,6 +4,7 @@ package com.p4f.kareem.rad_eye_v2;
 //
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -99,17 +100,28 @@ public class availableFlights extends android.support.v4.app.Fragment {
             @Override
             public void onFinish(String data) {
               String dose = getDoseFromHtml(data);
+                Intent intent = new Intent(getActivity(),DoseActivity.class);
+                intent.putExtra("dose", dose);
+                startActivity(intent);
             }
         };
         Map<String, Object> params = new LinkedHashMap<>();
         params.put("DateOfFlight", "03/2017");
-        params.put("Ocode", flightTrack.getDepartureAirportFsCode());
-        params.put("DCode", flightTrack.getArrivalAirportFsCode());
+        params.put("Ocode", "KK78");
+        params.put("DCode", "KCIR");
         params.put("NumOfSteps", 1);
         params.put("ClimbTime", 30);
-        params.put("StepAlt_1", flightTrack);
+        params.put("StepAlt_1", max);
         params.put("StepMin_1", 30);
         params.put("MinDown", 30);
+//        params.put("DateOfFlight", "03/2017");
+//        params.put("Ocode", "KK78");
+//        params.put("DCode", "KCIR");
+//        params.put("NumOfSteps", 1);
+//        params.put("ClimbTime", 1);
+//        params.put("StepAlt_1", 15000);
+//        params.put("StepMin_1", 30);
+//        params.put("MinDown", 30);
         postConnector.setParams(params);
         postConnector.execute();
     }

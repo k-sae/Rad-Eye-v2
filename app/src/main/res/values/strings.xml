@@ -13,4 +13,5 @@
     <string name="flying_plane_icon"></string>
     <string name="find_flights">find flights</string>
     <string name="title_activity_human_map">HumanMap</string>
+    <string name="title_activity_dose">DoseActivity</string>
 </resources>

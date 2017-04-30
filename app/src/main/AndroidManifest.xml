@@ -24,6 +24,10 @@
         <activity
             android:name=".humanMap.HumanMap"
             android:label="@string/title_activity_human_map"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DoseActivity"
+            android:label="@string/title_activity_dose"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
