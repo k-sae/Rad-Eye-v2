@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class availableFlights extends Fragment {
+public class availableFlights extends android.support.v4.app.Fragment {
 
     private AvailableFlightsAdapter availableFlightsAdapter;
     public availableFlights() {

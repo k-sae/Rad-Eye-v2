@@ -52,6 +52,7 @@ public class FlightStatusByDate extends Fragment {
                 availableFlights.params = airline + "/" + flightNo + "/" + viewAs + "/" + date + "?appId=a1de1596&appKey=b344fa0a5bda1a056e2021572bcaae42";
                 getFragmentManager().beginTransaction().add(R.id.overLay, availableFlights)
                         .commit();
+
             }
         });
 
