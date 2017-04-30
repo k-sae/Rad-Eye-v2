@@ -1,12 +1,11 @@
 package com.p4f.kareem.rad_eye_v2;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.p4f.kareem.rad_eye_v2.Adapters.FragmentAdapter;
 
@@ -26,6 +25,7 @@ public class MainActivityFragment extends Fragment {
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.mainViewPager);
         fragmentAdapter.getFragments().add(new FlightStatusByDate());
         viewPager.setAdapter(fragmentAdapter);
+
         return view;
     }
 

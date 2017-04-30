@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "977862680725",
+    "firebase_url": "https://newapp-1d4d8.firebaseio.com",
+    "project_id": "newapp-1d4d8",
+    "storage_bucket": "newapp-1d4d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977862680725:android:c5d60657402e3219",
+        "android_client_info": {
+          "package_name": "com.nagy.mohamed.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977862680725-cakh561f8sf99s051trrr6flvsbf3f4i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrE-iQvQVCJ5QlcYk2a9Mi_ZlAFkg9Zww"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977862680725:android:3b76789709b454d0",
+        "android_client_info": {
+          "package_name": "com.p4f.kareem.rad_eye_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977862680725-cakh561f8sf99s051trrr6flvsbf3f4i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrE-iQvQVCJ5QlcYk2a9Mi_ZlAFkg9Zww"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,6 @@
 package com.p4f.kareem.rad_eye_v2;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,16 +13,13 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.p4f.kareem.rad_eye_v2.Adapters.AvailableFlightsAdapter;
 import com.p4f.kareem.rad_eye_v2.Connections.GetConnector;
-import com.p4f.kareem.rad_eye_v2.FlightApiData.Flight;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightStatus;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightTrack;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightsDataTracking;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.Position;
-import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightsData;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 
 //
 /**

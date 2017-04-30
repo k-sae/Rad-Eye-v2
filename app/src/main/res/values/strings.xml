@@ -12,4 +12,5 @@
     <string name="flight_no_ex_100">flight no ex: 100</string>
     <string name="flying_plane_icon"></string>
     <string name="find_flights">find flights</string>
+    <string name="title_activity_human_map">HumanMap</string>
 </resources>
