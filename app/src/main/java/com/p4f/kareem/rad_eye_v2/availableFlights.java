@@ -79,6 +79,7 @@ public class availableFlights extends android.support.v4.app.Fragment {
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 FlightsDataTracking flightsData = new Gson().fromJson(s,FlightsDataTracking.class);
+                if (flightsData == null || availableFlightsAdapter.getFlightStatuses() == null) return;
                 availableFlightsAdapter.getFlightStatuses().addAll(flightsData.getFlightTracks());
                 availableFlightsAdapter.notifyDataSetChanged();
                 Log.e("info", "onPostExecute: Recieved" );
