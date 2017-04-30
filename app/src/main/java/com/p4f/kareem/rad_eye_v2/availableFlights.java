@@ -1,6 +1,7 @@
 package com.p4f.kareem.rad_eye_v2;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,9 +12,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.p4f.kareem.rad_eye_v2.Adapters.AvailableFlightsAdapter;
 import com.p4f.kareem.rad_eye_v2.Connections.GetConnector;
+import com.p4f.kareem.rad_eye_v2.Connections.PostConnector;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.Flight;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightStatus;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightTrack;
@@ -21,9 +30,17 @@ import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightsDataTracking;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.Position;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightsData;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 //
 /**
@@ -49,10 +66,7 @@ public class availableFlights extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 FlightTrack flightStatus = availableFlightsAdapter.getFlightStatuses().get(position);
-                for (Position position1: availableFlightsAdapter.getFlightStatuses().get(position).getPositions()
-                     ) {
-                    Log.e("asdasd", String.valueOf( position1.getAltitudeFt()) + "//" + String.valueOf(position1.getDate()) );
-                }
+                calculate(flightStatus);
             }
         });
         return view;
@@ -84,8 +98,8 @@ public class availableFlights extends Fragment {
         };
         getConnector.execute("");
     }
-    private void calculate(FlightStatus flightStatus)
+    private void calculate(FlightTrack flightTrack)
     {
-//        flightStatus.s
+        
     }
 }
