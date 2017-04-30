@@ -1,8 +1,10 @@
 package com.p4f.kareem.rad_eye_v2;
 
 
+//
+
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,15 +15,16 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.p4f.kareem.rad_eye_v2.Adapters.AvailableFlightsAdapter;
 import com.p4f.kareem.rad_eye_v2.Connections.GetConnector;
-import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightStatus;
+import com.p4f.kareem.rad_eye_v2.Connections.PostConnector;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightTrack;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightsDataTracking;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.Position;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-//
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -45,9 +48,10 @@ public class availableFlights extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 FlightTrack flightStatus = availableFlightsAdapter.getFlightStatuses().get(position);
-                for (Position position1: availableFlightsAdapter.getFlightStatuses().get(position).getPositions()
-                     ) {
-                    Log.e("asdasd", String.valueOf( position1.getAltitudeFt()) + "//" + String.valueOf(position1.getDate()) );
+                try {
+                    calculate(flightStatus);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -80,8 +84,38 @@ public class availableFlights extends Fragment {
         };
         getConnector.execute("");
     }
-    private void calculate(FlightStatus flightStatus)
+    private void calculate(FlightTrack flightTrack) throws MalformedURLException {
+        Integer max = 0;
+        for (Position position:flightTrack.getPositions()
+             ) {
+            if (position.getAltitudeFt()!= null)
+            if (position.getAltitudeFt() > max)
+            {
+                max = position.getAltitudeFt();
+            }
+        }
+        URL url = new URL("http://jag.cami.jccbi.gov/cariresults.asp");
+        PostConnector postConnector = new PostConnector(url) {
+            @Override
+            public void onFinish(String data) {
+              String dose = getDoseFromHtml(data);
+            }
+        };
+        Map<String, Object> params = new LinkedHashMap<>();
+        params.put("DateOfFlight", "03/2017");
+        params.put("Ocode", flightTrack.getDepartureAirportFsCode());
+        params.put("DCode", flightTrack.getArrivalAirportFsCode());
+        params.put("NumOfSteps", 1);
+        params.put("ClimbTime", 30);
+        params.put("StepAlt_1", flightTrack);
+        params.put("StepMin_1", 30);
+        params.put("MinDown", 30);
+        postConnector.setParams(params);
+        postConnector.execute();
+    }
+    private String  getDoseFromHtml(String data)
     {
-//        flightStatus.s
+        String s = " &nbsp;(";
+        return data.substring(data.indexOf(s) + s.length(), data.indexOf(" millisieverts"));
     }
 }
