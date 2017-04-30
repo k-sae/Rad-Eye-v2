@@ -19,6 +19,7 @@
             android:id="@+id/currentDose"
             android:textColor="@color/colorForeground"
             android:textSize="64sp"
+            android:textAlignment="center"
             />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
