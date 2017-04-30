@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.p4f.kareem.rad_eye_v2.DoseActivityFragment"
-    tools:showIn="@layout/activity_dose">
+    tools:showIn="@layout/activity_dose"
+    android:background="@color/background"
+    >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,6 +17,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:id="@+id/currentDose"
+            android:textColor="@color/colorForeground"
+            android:textSize="64sp"
             />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

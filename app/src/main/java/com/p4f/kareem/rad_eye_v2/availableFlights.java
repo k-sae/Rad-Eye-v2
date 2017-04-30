@@ -20,6 +20,7 @@ import com.p4f.kareem.rad_eye_v2.Connections.PostConnector;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightTrack;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightsDataTracking;
 import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.Position;
+import com.p4f.kareem.rad_eye_v2.humanMap.HumanMap;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -107,8 +108,8 @@ public class availableFlights extends android.support.v4.app.Fragment {
         };
         Map<String, Object> params = new LinkedHashMap<>();
         params.put("DateOfFlight", "03/2017");
-        params.put("Ocode", "KK78");
-        params.put("DCode", "KCIR");
+        params.put("Ocode", "K" + flightTrack.getDepartureAirportFsCode());
+        params.put("DCode", "K" + flightTrack.getDepartureAirportFsCode());
         params.put("NumOfSteps", 1);
         params.put("ClimbTime", 30);
         params.put("StepAlt_1", max);

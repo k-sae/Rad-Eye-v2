@@ -58,9 +58,9 @@ public class AvailableFlightsAdapter extends BaseAdapter {
            convertView =  LayoutInflater.from(context).inflate(R.layout.flightdata_view, parent, false);
         }
         FlightTrack flightStatus = flightStatuses.get(position);
-        TextView textView  = (TextView) convertView.findViewById(R.id.flightDetail_textView);
-        textView.setText(flightStatus.getFlightNumber());
-//        ((TextView) convertView.findViewById(R.id.flightDetail_textView)).setText(flightStatus.getFlightId());
-        return convertView;
+        TextView textView  = (TextView) convertView.findViewById(R.id.origin_AirPort_code);
+        textView.setText("Origin AirPort: " + flightStatus.getDepartureAirportFsCode());
+        ((TextView) convertView.findViewById(R.id.dest_Airport)).setText("Destination: " + flightStatus.getArrivalAirportFsCode());
+          return convertView;
     }
 }
