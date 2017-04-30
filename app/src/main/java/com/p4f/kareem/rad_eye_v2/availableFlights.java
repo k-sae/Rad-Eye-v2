@@ -4,6 +4,7 @@ package com.p4f.kareem.rad_eye_v2;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,7 +67,11 @@ public class availableFlights extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 FlightTrack flightStatus = availableFlightsAdapter.getFlightStatuses().get(position);
-                calculate(flightStatus);
+                try {
+                    calculate(flightStatus);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
             }
         });
         return view;
@@ -98,8 +103,38 @@ public class availableFlights extends Fragment {
         };
         getConnector.execute("");
     }
-    private void calculate(FlightTrack flightTrack)
+    private void calculate(FlightTrack flightTrack) throws MalformedURLException {
+        Integer max = 0;
+        for (Position position:flightTrack.getPositions()
+             ) {
+            if (position.getAltitudeFt()!= null)
+            if (position.getAltitudeFt() > max)
+            {
+                max = position.getAltitudeFt();
+            }
+        }
+        URL url = new URL("http://jag.cami.jccbi.gov/cariresults.asp");
+        PostConnector postConnector = new PostConnector(url) {
+            @Override
+            public void onFinish(String data) {
+              String dose = getDoseFromHtml(data);
+            }
+        };
+        Map<String, Object> params = new LinkedHashMap<>();
+        params.put("DateOfFlight", "03/2017");
+        params.put("Ocode", flightTrack.getDepartureAirportFsCode());
+        params.put("DCode", flightTrack.getArrivalAirportFsCode());
+        params.put("NumOfSteps", 1);
+        params.put("ClimbTime", 30);
+        params.put("StepAlt_1", flightTrack);
+        params.put("StepMin_1", 30);
+        params.put("MinDown", 30);
+        postConnector.setParams(params);
+        postConnector.execute();
+    }
+    private String  getDoseFromHtml(String data)
     {
-        
+        String s = " &nbsp;(";
+        return data.substring(data.indexOf(s) + s.length(), data.indexOf(" millisieverts"));
     }
 }
