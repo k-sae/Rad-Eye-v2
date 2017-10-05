@@ -22,7 +22,7 @@ public class DoseActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         String dose = getActivity().getIntent().getExtras().getString("dose");
         View view  = inflater.inflate(R.layout.fragment_dose, container, false);
-        ((TextView) view.findViewById(R.id.currentDose)).setText(dose + "\nmSv");
+        ((TextView) view.findViewById(R.id.currentDose)).setText(dose + "\nuSv");
         return view;
     }
 }
