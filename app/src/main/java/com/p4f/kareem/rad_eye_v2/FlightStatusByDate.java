@@ -41,12 +41,12 @@ public class FlightStatusByDate extends Fragment {
         view.findViewById(R.id.findFlights).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String airline  = ((TextView) view.findViewById(R.id.departure_airport)).getText().toString();
-                String flightNo  =  ((TextView) view.findViewById(R.id.arrival_airport)).getText().toString();
+                String DepartureAirPort  = ((TextView) view.findViewById(R.id.departure_airport)).getText().toString();
+                String arrivalAirport  =  ((TextView) view.findViewById(R.id.arrival_airport)).getText().toString();
                 String viewAs = "arr";
                 String date  = ((TextView) view.findViewById(R.id.date_editText)).getText().toString();
                 AvailableFlightsFragment AvailableFlightsFragment = new AvailableFlightsFragment();
-                AvailableFlightsFragment.params = airline + "/" + flightNo + "/" + viewAs + "/" + date + "?appId=a1de1596&appKey=b344fa0a5bda1a056e2021572bcaae42";
+                AvailableFlightsFragment.params = DepartureAirPort + "/" + arrivalAirport + "/" + viewAs + "/" + date + "?appId=a1de1596&appKey=b344fa0a5bda1a056e2021572bcaae42";
                 getFragmentManager().beginTransaction().add(R.id.overLay, AvailableFlightsFragment)
                         .commit();
 
