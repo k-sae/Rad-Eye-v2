@@ -30,10 +30,10 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class availableFlights extends android.support.v4.app.Fragment {
+public class AvailableFlightsFragment extends android.support.v4.app.Fragment {
 
     private AvailableFlightsAdapter availableFlightsAdapter;
-    public availableFlights() {
+    public AvailableFlightsFragment() {
         // Required empty public constructor
     }
     public String params;
@@ -116,14 +116,6 @@ public class availableFlights extends android.support.v4.app.Fragment {
         params.put("StepAlt_1", max);
         params.put("StepMin_1", 30);
         params.put("MinDown", 30);
-//        params.put("DateOfFlight", "03/2017");
-//        params.put("Ocode", "KK78");
-//        params.put("DCode", "KCIR");
-//        params.put("NumOfSteps", 1);
-//        params.put("ClimbTime", 1);
-//        params.put("StepAlt_1", 15000);
-//        params.put("StepMin_1", 30);
-//        params.put("MinDown", 30);
         postConnector.setParams(params);
         postConnector.execute();
     }

@@ -14,4 +14,6 @@
     <string name="find_flights">find flights</string>
     <string name="title_activity_human_map">HumanMap</string>
     <string name="title_activity_dose">DoseActivity</string>
+    <string name="airport_ex_kjfk">Airport Ex: KJFK</string>
+    <string name="arrival_airport_ex_vhhh">Arrival Airport ex: VHHH</string>
 </resources>

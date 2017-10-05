@@ -12,22 +12,15 @@
         style="@style/flightByData_LinearLayout"
         android:id="@+id/l1">
     <EditText
-        android:id="@+id/airline_EditText"
+        android:id="@+id/departure_airport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:ems="12"
         android:inputType="textPersonName"
-        android:hint="@string/airline_code_ex_aa"
+        android:hint="@string/airport_ex_kjfk"
         android:textColorHint="@color/placeHolderColor"
         android:textColor="@color/colorForeground"
-        />
-    <com.p4f.kareem.rad_eye_v2.FontAwesome
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/plane_icon"
-        android:textColor="@color/colorAccent"
-        android:textSize="26sp"
+        android:drawableEnd="@drawable/take_off"
         />
     </LinearLayout>
     <LinearLayout
@@ -41,10 +34,11 @@
         android:id="@+id/date_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:ems="11"
         android:textColorHint="@color/placeHolderColor"
         android:hint="@string/date_ex_25_5_1997"
-        android:textColor="@color/colorForeground"/>
+        android:textColor="@color/colorForeground"
+        />
     <com.p4f.kareem.rad_eye_v2.FontAwesome
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -62,22 +56,15 @@
         style="@style/flightByData_LinearLayout"
         android:layout_below="@id/l2">
         <EditText
-            android:id="@+id/flightNo_editText"
+            android:id="@+id/arrival_airport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:ems="12"
             android:textColorHint="@color/placeHolderColor"
-            android:hint="@string/flight_no_ex_100"
+            android:hint="@string/arrival_airport_ex_vhhh"
+            android:drawableEnd="@drawable/landing"
             android:textColor="@color/colorForeground" />
 
-        <com.p4f.kareem.rad_eye_v2.FontAwesome
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/flying_plane_icon"
-            android:textColor="@color/colorAccent"
-            android:textSize="26sp"
-            />
     </LinearLayout>
 
     <Button

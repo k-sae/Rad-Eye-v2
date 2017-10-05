@@ -3,12 +3,9 @@ package com.p4f.kareem.rad_eye_v2;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 
@@ -32,7 +29,7 @@ public class FlightStatusByDate extends Fragment {
 //        button.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                getFragmentManager().beginTransaction().add(R.id.overLay, new availableFlights())
+//                getFragmentManager().beginTransaction().add(R.id.overLay, new AvailableFlightsFragment())
 //                        .commit();
 //            }
 //        });
@@ -44,13 +41,13 @@ public class FlightStatusByDate extends Fragment {
         view.findViewById(R.id.findFlights).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String airline  = ((TextView) view.findViewById(R.id.airline_EditText)).getText().toString();
-                String flightNo  =  ((TextView) view.findViewById(R.id.flightNo_editText)).getText().toString();
+                String airline  = ((TextView) view.findViewById(R.id.departure_airport)).getText().toString();
+                String flightNo  =  ((TextView) view.findViewById(R.id.arrival_airport)).getText().toString();
                 String viewAs = "arr";
                 String date  = ((TextView) view.findViewById(R.id.date_editText)).getText().toString();
-                availableFlights availableFlights = new availableFlights();
-                availableFlights.params = airline + "/" + flightNo + "/" + viewAs + "/" + date + "?appId=a1de1596&appKey=b344fa0a5bda1a056e2021572bcaae42";
-                getFragmentManager().beginTransaction().add(R.id.overLay, availableFlights)
+                AvailableFlightsFragment AvailableFlightsFragment = new AvailableFlightsFragment();
+                AvailableFlightsFragment.params = airline + "/" + flightNo + "/" + viewAs + "/" + date + "?appId=a1de1596&appKey=b344fa0a5bda1a056e2021572bcaae42";
+                getFragmentManager().beginTransaction().add(R.id.overLay, AvailableFlightsFragment)
                         .commit();
 
             }
