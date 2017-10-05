@@ -61,7 +61,7 @@ public class AvailableFlightsFragment extends android.support.v4.app.Fragment {
     }
     private void fetchData(View view)
     {
-        final String BASE_URL = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/tracks/";
+        final String BASE_URL = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/route/status/";
 
         GetConnector getConnector = new GetConnector() {
             @Override

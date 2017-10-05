@@ -25,14 +25,6 @@ public class FlightStatusByDate extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view  = inflater.inflate(R.layout.fragment_flight_status_by_date, container, false);
-//        Button button  = (Button) view.findViewById(R.id.findFlights);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getFragmentManager().beginTransaction().add(R.id.overLay, new AvailableFlightsFragment())
-//                        .commit();
-//            }
-//        });
         setEvents(view);
         return view;
     }
@@ -43,10 +35,10 @@ public class FlightStatusByDate extends Fragment {
             public void onClick(View v) {
                 String DepartureAirPort  = ((TextView) view.findViewById(R.id.departure_airport)).getText().toString();
                 String arrivalAirport  =  ((TextView) view.findViewById(R.id.arrival_airport)).getText().toString();
-                String viewAs = "arr";
+                String viewAs = "dep";
                 String date  = ((TextView) view.findViewById(R.id.date_editText)).getText().toString();
                 AvailableFlightsFragment AvailableFlightsFragment = new AvailableFlightsFragment();
-                AvailableFlightsFragment.params = DepartureAirPort + "/" + arrivalAirport + "/" + viewAs + "/" + date + "?appId=a1de1596&appKey=b344fa0a5bda1a056e2021572bcaae42";
+                AvailableFlightsFragment.params = DepartureAirPort + "/" + arrivalAirport + "/" + viewAs + "/" + date + "?appId="+ Cred.APP_ID +"&appKey=" + Cred.APP_KEY + "&hourOfDay=0&utc=false&numHours=24&maxFlights=5";
                 getFragmentManager().beginTransaction().add(R.id.overLay, AvailableFlightsFragment)
                         .commit();
 
