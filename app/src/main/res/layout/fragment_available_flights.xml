@@ -1,9 +1,20 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<ListView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.p4f.kareem.rad_eye_v2.AvailableFlightsFragment"
-    android:background="#c9000000"
+    android:background="#dd000000"
     android:clickable="true"
     android:id="@+id/availableFlights_ListView">
 </ListView>
+    <LinearLayout
+        android:layout_width="match_parent" android:id="@+id/loading_holder"
+        android:layout_height="match_parent" android:background="#000">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/loading_image_view" android:src="@drawable/circle"/>
+    </LinearLayout>
+</RelativeLayout>

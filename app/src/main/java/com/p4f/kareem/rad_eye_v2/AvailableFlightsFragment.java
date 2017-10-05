@@ -11,8 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.google.gson.Gson;
 import com.p4f.kareem.rad_eye_v2.Adapters.AvailableFlightsAdapter;
 import com.p4f.kareem.rad_eye_v2.Connections.GetConnector;
@@ -35,6 +38,7 @@ import java.util.Map;
 public class AvailableFlightsFragment extends android.support.v4.app.Fragment {
 
     private AvailableFlightsAdapter availableFlightsAdapter;
+    private View loadingHolder;
     public AvailableFlightsFragment() {
         // Required empty public constructor
     }
@@ -46,11 +50,16 @@ public class AvailableFlightsFragment extends android.support.v4.app.Fragment {
         availableFlightsAdapter = new AvailableFlightsAdapter(getActivity());
         View view = inflater.inflate(R.layout.fragment_available_flights, container, false);
         ListView listView = (ListView) view.findViewById(R.id.availableFlights_ListView);
+        loadingHolder = view.findViewById(R.id.loading_holder);
+        ImageView loadingImage = (ImageView) view.findViewById(R.id.loading_image_view);
+        GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(loadingImage);
+        Glide.with(this).load(R.drawable.loading_v2).into(imageViewTarget);
         fetchData(view);
         listView.setAdapter(availableFlightsAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                loadingHolder.setVisibility(View.VISIBLE);
                 FlightStatus flightStatus = availableFlightsAdapter.getFlightStatuses().get(position);
                 trackFlight(flightStatus);
             }
@@ -76,6 +85,7 @@ public class AvailableFlightsFragment extends android.support.v4.app.Fragment {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
+                loadingHolder.setVisibility(View.GONE);
                 FlightStateWithRoute flightsData = new Gson().fromJson(s,FlightStateWithRoute.class);
                 if (flightsData == null || availableFlightsAdapter.getFlightStatuses() == null || flightsData.getFlightStatuses() == null) return;
                 availableFlightsAdapter.getFlightStatuses().addAll(flightsData.getFlightStatuses());
@@ -90,7 +100,7 @@ public class AvailableFlightsFragment extends android.support.v4.app.Fragment {
         for (Position position:flightTracker.getFlightTrack().getPositions()
              ) {
             if (position.getAltitudeFt()!= null)
-            if (position.getAltitudeFt() > max)
+            if (position.getAltitudeFt() > max && position.getAltitudeFt() < 60000 )
             {
                 max = position.getAltitudeFt();
             }
@@ -100,6 +110,7 @@ public class AvailableFlightsFragment extends android.support.v4.app.Fragment {
             @Override
             public void onFinish(String data) {
               String dose = getDoseFromHtml(data);
+                loadingHolder.setVisibility(View.GONE);
                 Intent intent = new Intent(getActivity(),DoseActivity.class);
                 intent.putExtra("dose", dose);
                 startActivity(intent);
