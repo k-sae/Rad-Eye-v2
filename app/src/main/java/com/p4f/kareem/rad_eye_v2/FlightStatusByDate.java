@@ -38,7 +38,7 @@ public class FlightStatusByDate extends Fragment {
                 String viewAs = "dep";
                 String date  = ((TextView) view.findViewById(R.id.date_editText)).getText().toString();
                 AvailableFlightsFragment AvailableFlightsFragment = new AvailableFlightsFragment();
-                AvailableFlightsFragment.params = DepartureAirPort + "/" + arrivalAirport + "/" + viewAs + "/" + date + "?appId="+ Cred.APP_ID +"&appKey=" + Cred.APP_KEY + "&hourOfDay=0&utc=false&numHours=24&maxFlights=5";
+                AvailableFlightsFragment.params = DepartureAirPort + "/" + arrivalAirport + "/" + viewAs + "/" + date + "?appId="+ Cred.APP_ID +"&appKey=" + Cred.APP_KEY + "&utc=false&numHours=24&maxFlights=5";
                 getFragmentManager().beginTransaction().add(R.id.overLay, AvailableFlightsFragment)
                         .commit();
 

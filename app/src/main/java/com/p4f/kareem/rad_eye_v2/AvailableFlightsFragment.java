@@ -17,9 +17,11 @@ import com.google.gson.Gson;
 import com.p4f.kareem.rad_eye_v2.Adapters.AvailableFlightsAdapter;
 import com.p4f.kareem.rad_eye_v2.Connections.GetConnector;
 import com.p4f.kareem.rad_eye_v2.Connections.PostConnector;
-import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightTrack;
-import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightsDataTracking;
-import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.Position;
+import com.p4f.kareem.rad_eye_v2.Model.FlightStateWithRoute;
+import com.p4f.kareem.rad_eye_v2.Model.FlightStatus;
+import com.p4f.kareem.rad_eye_v2.Model.FlightTrack;
+import com.p4f.kareem.rad_eye_v2.Model.FlightTracker;
+import com.p4f.kareem.rad_eye_v2.Model.Position;
 import com.p4f.kareem.rad_eye_v2.humanMap.HumanMap;
 
 import java.net.MalformedURLException;
@@ -49,26 +51,22 @@ public class AvailableFlightsFragment extends android.support.v4.app.Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                FlightTrack flightStatus = availableFlightsAdapter.getFlightStatuses().get(position);
-                try {
-                    calculate(flightStatus);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
+                FlightStatus flightStatus = availableFlightsAdapter.getFlightStatuses().get(position);
+                trackFlight(flightStatus);
             }
         });
         return view;
     }
     private void fetchData(View view)
     {
-        final String BASE_URL = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/route/status/";
-
+        final String HISTORICAL_stats_BASE_URL = "https://api.flightstats.com/flex/flightstatus/historical/rest/v3/json/route/status/";
+        final String FLIGHT_STAT = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/route/status/";
         GetConnector getConnector = new GetConnector() {
             @Override
             protected URL fetchURL(String s) {
                 try {
-                    Log.e("URL:", "fetchURL: " + BASE_URL + params );
-                    return  new URL( BASE_URL + params);
+                    Log.e("URL:", "fetchURL: " + FLIGHT_STAT + params );
+                    return  new URL( FLIGHT_STAT + params);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
@@ -78,18 +76,18 @@ public class AvailableFlightsFragment extends android.support.v4.app.Fragment {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                FlightsDataTracking flightsData = new Gson().fromJson(s,FlightsDataTracking.class);
-                if (flightsData == null || availableFlightsAdapter.getFlightStatuses() == null) return;
-                availableFlightsAdapter.getFlightStatuses().addAll(flightsData.getFlightTracks());
+                FlightStateWithRoute flightsData = new Gson().fromJson(s,FlightStateWithRoute.class);
+                if (flightsData == null || availableFlightsAdapter.getFlightStatuses() == null || flightsData.getFlightStatuses() == null) return;
+                availableFlightsAdapter.getFlightStatuses().addAll(flightsData.getFlightStatuses());
                 availableFlightsAdapter.notifyDataSetChanged();
                 Log.e("info", "onPostExecute: Recieved" );
             }
         };
         getConnector.execute("");
     }
-    private void calculate(FlightTrack flightTrack) throws MalformedURLException {
+    private void calculate(FlightTracker flightTracker) throws MalformedURLException {
         Integer max = 0;
-        for (Position position:flightTrack.getPositions()
+        for (Position position:flightTracker.getFlightTrack().getPositions()
              ) {
             if (position.getAltitudeFt()!= null)
             if (position.getAltitudeFt() > max)
@@ -108,20 +106,53 @@ public class AvailableFlightsFragment extends android.support.v4.app.Fragment {
             }
         };
         Map<String, Object> params = new LinkedHashMap<>();
-        params.put("DateOfFlight", "03/2017");
-        params.put("Ocode", "K" + flightTrack.getDepartureAirportFsCode());
-        params.put("DCode", "K" + flightTrack.getDepartureAirportFsCode());
+        params.put("DateOfFlight", "08/2017");
+        params.put("Ocode",  flightTracker.getAppendix().getAirports().get(0).getIcao());
+        params.put("DCode", flightTracker.getAppendix().getAirports().get(flightTracker.getAppendix().getAirports().size() - 1).getIcao());
         params.put("NumOfSteps", 1);
         params.put("ClimbTime", 30);
         params.put("StepAlt_1", max);
-        params.put("StepMin_1", 30);
+        params.put("StepMin_1", 960);
         params.put("MinDown", 30);
         postConnector.setParams(params);
         postConnector.execute();
     }
     private String  getDoseFromHtml(String data)
     {
-        String s = " &nbsp;(";
-        return data.substring(data.indexOf(s) + s.length(), data.indexOf(" millisieverts"));
+        String s = "color=\"#0000FF\">&nbsp;";
+        if (!data.contains(s)) return "0.0000";
+        data = data.substring(data.indexOf(s) + s.length(), data.indexOf("</font><font face=\"Arial\"")).replaceAll("(\\s|\\n)", "");
+        return data;
+    }
+    private void trackFlight(FlightStatus flightStatus)
+    {
+        final String FLIGHT_TRACK = "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flight/track/";
+        final String params =  flightStatus.getFlightId() + "?appId="+Cred.APP_ID+"&appKey=" + Cred.APP_KEY + "&includeFlightPlan=false";
+        GetConnector getConnector = new GetConnector() {
+            @Override
+            protected URL fetchURL(String s) {
+                try {
+                    Log.e("URL:", "fetchURL: " + FLIGHT_TRACK + params );
+                    return  new URL( FLIGHT_TRACK + params);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                FlightTracker flightsData = new Gson().fromJson(s,FlightTracker.class);
+                if (flightsData == null || availableFlightsAdapter.getFlightStatuses() == null || flightsData.getFlightTrack() == null) return;
+                try {
+                    calculate(flightsData);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                Log.e("info", "onPostExecute: Recieved" );
+            }
+        };
+        getConnector.execute("");
     }
 }

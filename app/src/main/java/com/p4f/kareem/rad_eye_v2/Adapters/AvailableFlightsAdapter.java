@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightStatus;
-import com.p4f.kareem.rad_eye_v2.FlightApiData.FlightTrack.FlightTrack;
+import com.p4f.kareem.rad_eye_v2.Model.FlightStatus;
 import com.p4f.kareem.rad_eye_v2.R;
 
 import java.util.ArrayList;
@@ -18,14 +17,14 @@ import java.util.ArrayList;
  */
 
 public class AvailableFlightsAdapter extends BaseAdapter {
-   private ArrayList<FlightTrack> flightStatuses;
+   private ArrayList<FlightStatus> flightStatuses;
     private Context context;
 
-    public ArrayList<FlightTrack> getFlightStatuses() {
+    public ArrayList<FlightStatus> getFlightStatuses() {
         return flightStatuses;
     }
 
-    public void setFlightStatuses(ArrayList<FlightTrack> flightStatuses) {
+    public void setFlightStatuses(ArrayList<FlightStatus> flightStatuses) {
         this.flightStatuses = flightStatuses;
     }
 
@@ -40,7 +39,7 @@ public class AvailableFlightsAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        FlightTrack flightStatus = flightStatuses.get(position);
+        FlightStatus flightStatus = flightStatuses.get(position);
 
         return  flightStatus;
     }
@@ -57,10 +56,10 @@ public class AvailableFlightsAdapter extends BaseAdapter {
         {
            convertView =  LayoutInflater.from(context).inflate(R.layout.flightdata_view, parent, false);
         }
-        FlightTrack flightStatus = flightStatuses.get(position);
+        FlightStatus flightStatus = flightStatuses.get(position);
         TextView textView  = (TextView) convertView.findViewById(R.id.origin_AirPort_code);
-        textView.setText("Origin AirPort: " + flightStatus.getDepartureAirportFsCode());
-        ((TextView) convertView.findViewById(R.id.dest_Airport)).setText("Destination: " + flightStatus.getArrivalAirportFsCode());
+        textView.setText("Flight No: " + flightStatus.getFlightNumber());
+        ((TextView) convertView.findViewById(R.id.dest_Airport)).setText("Date: " + flightStatus.getDepartureDate().getDateLocal());
           return convertView;
     }
 }
